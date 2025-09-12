@@ -1,0 +1,9 @@
+Place album-cover.jpg and other images in this directory.
+
+Required images:
+- album-cover.jpg (minimum 500x500px, square format)
+
+Optional images for enhanced experience:
+- track-backgrounds/ (individual track artwork)
+- character-art/ (Finn, Nova, Luna, etc.)
+- scene-visualizers/ (for each act)

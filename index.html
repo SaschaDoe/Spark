@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPARK - Soundtrack for a Film That Was Never Made</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Experience the musical journey of Finn and Nova through an original soundtrack for an imaginary film about two young heroes saving their magical kingdom.">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <header>
+        <nav>
+            <div class="logo">SPARK</div>
+            <ul class="nav-links">
+                <li><a href="#story">The Story</a></li>
+                <li><a href="#soundtrack">Soundtrack</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="https://patreon.com/sparksoundtrack" target="_blank" class="patreon-link">Support on Patreon</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="title-animation">SPARK</h1>
+                <p class="subtitle">Original Soundtrack for a Film That Was Never Made</p>
+                <div class="hero-buttons">
+                    <button id="playButton" class="btn-primary">▶ Play Soundtrack</button>
+                    <a href="https://patreon.com/sparksoundtrack" target="_blank" class="btn-secondary">Become a Patron</a>
+                </div>
+            </div>
+            <div class="sun-visual">
+                <div class="sun-core"></div>
+                <div class="sun-rays"></div>
+            </div>
+        </section>
+
+        <section id="story" class="story-section">
+            <div class="container">
+                <h2>The Story</h2>
+                <div class="story-grid">
+                    <div class="story-card">
+                        <h3>Act I: When The Lights Dim</h3>
+                        <p>The magical sun starts flickering. Finn (Sun Folk) and Nova (Deep Folk) must overcome their families' ancient rivalry to create the sparks needed to heal their dying world.</p>
+                    </div>
+                    <div class="story-card">
+                        <h3>Act II: The Underground Adventure</h3>
+                        <p>Trapped underground, Finn and Nova discover the truth about their kingdom. With new allies Luna, Zephyr, and Old Pete, they journey through forgotten places and uncover ancient secrets.</p>
+                    </div>
+                    <div class="story-card">
+                        <h3>Act III: Healing The Sun</h3>
+                        <p>The final battle against Lady Seraphina tests everyone's courage. Heroes make sacrifices, the sun is healed, but victory comes with a price that changes everyone forever.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="soundtrack" class="soundtrack-section">
+            <div class="container">
+                <h2>The Complete Soundtrack</h2>
+                <div class="player-container">
+                    <div class="now-playing">
+                        <img src="images/album-cover.jpg" alt="SPARK Album Cover" class="album-art" id="albumArt">
+                        <div class="track-info">
+                            <h3 id="trackTitle">Select a track to play</h3>
+                            <p id="trackDescription">Experience the musical journey</p>
+                        </div>
+                    </div>
+                    
+                    <div class="audio-controls">
+                        <audio id="audioPlayer" preload="none"></audio>
+                        <div class="control-buttons">
+                            <button id="prevTrack" class="control-btn">⏮</button>
+                            <button id="playPause" class="control-btn main-play">▶</button>
+                            <button id="nextTrack" class="control-btn">⏭</button>
+                        </div>
+                        <div class="progress-container">
+                            <span id="currentTime">0:00</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <span id="duration">0:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tracklist">
+                    <h3>Track List</h3>
+                    <div class="tracks" id="trackList">
+                        <!-- Tracks will be dynamically loaded here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="download" class="download-section">
+            <div class="container">
+                <h2>Download the Album</h2>
+                <div class="download-options">
+                    <div class="download-card free">
+                        <h3>Free Streaming</h3>
+                        <p>Listen to the complete soundtrack online</p>
+                        <ul>
+                            <li>Stream all tracks</li>
+                            <li>Share with friends</li>
+                            <li>Mobile friendly</li>
+                        </ul>
+                        <button class="btn-primary" id="streamButton">Stream Now</button>
+                    </div>
+                    
+                    <div class="download-card premium">
+                        <h3>Full Album Download</h3>
+                        <p>Get the complete 200MB high-quality album</p>
+                        <ul>
+                            <li>Lossless FLAC format</li>
+                            <li>Complete liner notes</li>
+                            <li>Bonus tracks</li>
+                            <li>Offline listening</li>
+                        </ul>
+                        <button class="btn-premium" id="downloadAlbum">Download Album (200MB)</button>
+                    </div>
+                    
+                    <div class="download-card patron">
+                        <h3>Patron Exclusive</h3>
+                        <p>Support the project and get exclusive content</p>
+                        <ul>
+                            <li>Stem files for remixing</li>
+                            <li>Behind-the-scenes content</li>
+                            <li>Early access to new tracks</li>
+                            <li>Story annotations</li>
+                        </ul>
+                        <a href="https://patreon.com/sparksoundtrack" target="_blank" class="btn-patreon">Become a Patron</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>SPARK Soundtrack</h4>
+                    <p>A musical journey through a story of friendship, sacrifice, and hope.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://patreon.com/sparksoundtrack" target="_blank">Patreon</a></li>
+                        <li><a href="https://github.com/SaschaDoe/Spark" target="_blank">GitHub</a></li>
+                        <li><a href="#" id="contactLink">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#" id="termsLink">Terms of Use</a></li>
+                        <li><a href="#" id="privacyLink">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SPARK Soundtrack. A film that exists only in imagination.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="downloadModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Downloading SPARK Album</h2>
+            <div class="download-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="downloadProgress"></div>
+                </div>
+                <p id="downloadStatus">Preparing download...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
