@@ -5,6 +5,8 @@ const tracks = [
         title: "The Dying Sun (Main Theme)",
         duration: "4:23",
         description: "The kingdom awakens to a flickering sun",
+        story: "As dawn breaks over the mysterious realm, Finn and Nova witness the great light beginning to falter. Ancient energies pulse weakly through crystalline conduits, casting dancing shadows that tell of forgotten power and impending darkness.",
+        lyrics: "Golden rays grow dim\nAcross the crystal sky\nWhispers in the wind\nOf power drawing nigh\n\nThe light we've always known\nBegins to fade away\nTwo hearts must find their way\nTo bring back the day",
         act: 1
     },
     {
@@ -129,28 +131,27 @@ function renderTracklist() {
             <span class="track-duration">${track.duration}</span>
         `;
         
-        trackElement.addEventListener('click', () => selectTrack(index));
+        trackElement.addEventListener('click', () => showTrackDetails(index));
         trackList.appendChild(trackElement);
     });
 }
 
-function selectTrack(index) {
-    currentTrackIndex = index;
+function showTrackDetails(index) {
     const track = tracks[index];
     
-    // Update UI
-    document.getElementById('trackTitle').textContent = track.title;
-    document.getElementById('trackDescription').textContent = track.description;
+    // Update modal content
+    document.getElementById('detailsTitle').textContent = track.title;
+    document.getElementById('trackStory').textContent = track.story || 'Story coming soon...';
+    document.getElementById('trackLyrics').textContent = track.lyrics || 'Lyrics coming soon...';
+    
+    // Show modal
+    document.getElementById('trackDetails').style.display = 'flex';
     
     // Update active track in list
     document.querySelectorAll('.track-item').forEach(item => {
         item.classList.remove('active');
     });
     document.querySelector(`[data-index="${index}"]`).classList.add('active');
-    
-    // In a real implementation, this would load the actual audio file
-    // For now, we'll simulate it
-    loadTrackAudio(track);
 }
 
 async function loadTrackAudio(track) {
@@ -178,28 +179,33 @@ async function loadTrackAudio(track) {
 function setupEventListeners() {
     // Play button in hero
     document.getElementById('playButton').addEventListener('click', () => {
-        selectTrack(0);
-        togglePlay();
+        showTrackDetails(0);
     });
     
-    // Player controls
-    document.getElementById('playPause').addEventListener('click', togglePlay);
-    document.getElementById('prevTrack').addEventListener('click', playPreviousTrack);
-    document.getElementById('nextTrack').addEventListener('click', playNextTrack);
+    // Modal controls
+    document.getElementById('closeDetails').addEventListener('click', () => {
+        document.getElementById('trackDetails').style.display = 'none';
+    });
     
-    // Progress bar
-    const progressBar = document.querySelector('.progress-bar');
-    progressBar.addEventListener('click', seekTo);
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const tabName = e.target.dataset.tab;
+            switchTab(tabName);
+        });
+    });
+    
+    // Close modal on outside click
+    document.getElementById('trackDetails').addEventListener('click', (e) => {
+        if (e.target.id === 'trackDetails') {
+            document.getElementById('trackDetails').style.display = 'none';
+        }
+    });
     
     // Download button
     document.getElementById('downloadAlbum').addEventListener('click', initiateDownload);
     
-    // Stream button
-    document.getElementById('streamButton').addEventListener('click', () => {
-        document.getElementById('soundtrack').scrollIntoView({ behavior: 'smooth' });
-        selectTrack(0);
-        togglePlay();
-    });
+    // Remove stream button functionality since it's removed
     
     // Modal
     const modal = document.getElementById('downloadModal');
@@ -270,11 +276,18 @@ function seekTo(e) {
     }
 }
 
-function formatTime(seconds) {
-    if (isNaN(seconds)) return '0:00';
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
+function switchTab(tabName) {
+    // Update tab buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+    
+    // Update tab content
+    document.querySelectorAll('.tab-pane').forEach(pane => {
+        pane.classList.remove('active');
+    });
+    document.getElementById(`${tabName}Tab`).classList.add('active');
 }
 
 async function initiateDownload() {

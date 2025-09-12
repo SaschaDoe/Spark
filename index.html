@@ -62,36 +62,40 @@
         <section id="soundtrack" class="soundtrack-section">
             <div class="container">
                 <h2>The Complete Soundtrack</h2>
-                <div class="player-container">
-                    <div class="now-playing">
-                        <img src="images/album-cover.jpg" alt="SPARK Album Cover" class="album-art" id="albumArt">
-                        <div class="track-info">
-                            <h3 id="trackTitle">Select a track to play</h3>
-                            <p id="trackDescription">Experience the musical journey</p>
-                        </div>
-                    </div>
-                    
-                    <div class="audio-controls">
-                        <audio id="audioPlayer" preload="none"></audio>
-                        <div class="control-buttons">
-                            <button id="prevTrack" class="control-btn">⏮</button>
-                            <button id="playPause" class="control-btn main-play">▶</button>
-                            <button id="nextTrack" class="control-btn">⏭</button>
-                        </div>
-                        <div class="progress-container">
-                            <span id="currentTime">0:00</span>
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="progressFill"></div>
-                            </div>
-                            <span id="duration">0:00</span>
+                <div class="album-showcase">
+                    <div class="album-display">
+                        <img src="images/album-cover.svg" alt="SPARK Album Cover" class="album-art" id="albumArt">
+                        <div class="album-info">
+                            <h3>SPARK Soundtrack</h3>
+                            <p>13 tracks of AI-generated music</p>
+                            <p>Created with Suno AI</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="tracklist">
-                    <h3>Track List</h3>
+                    <h3>Track List with Lyrics & Stories</h3>
                     <div class="tracks" id="trackList">
                         <!-- Tracks will be dynamically loaded here -->
+                    </div>
+                </div>
+                
+                <div class="track-details" id="trackDetails" style="display: none;">
+                    <div class="details-content">
+                        <h3 id="detailsTitle">Track Title</h3>
+                        <div class="details-tabs">
+                            <button class="tab-btn active" data-tab="story">Story</button>
+                            <button class="tab-btn" data-tab="lyrics">Lyrics</button>
+                        </div>
+                        <div class="tab-content">
+                            <div id="storyTab" class="tab-pane active">
+                                <p id="trackStory">Track story will appear here...</p>
+                            </div>
+                            <div id="lyricsTab" class="tab-pane">
+                                <pre id="trackLyrics">Track lyrics will appear here...</pre>
+                            </div>
+                        </div>
+                        <button class="close-details" id="closeDetails">×</button>
                     </div>
                 </div>
             </div>
@@ -101,16 +105,6 @@
             <div class="container">
                 <h2>Download the Album</h2>
                 <div class="download-options">
-                    <div class="download-card free">
-                        <h3>Free Streaming</h3>
-                        <p>Listen to the complete soundtrack online</p>
-                        <ul>
-                            <li>Stream all tracks</li>
-                            <li>Share with friends</li>
-                            <li>Mobile friendly</li>
-                        </ul>
-                        <button class="btn-primary" id="streamButton">Stream Now</button>
-                    </div>
                     
                     <div class="download-card premium">
                         <h3>Full Album Download</h3>
