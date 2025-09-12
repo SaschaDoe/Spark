@@ -188,7 +188,7 @@ nav {
 .cover-image {
     width: 100%;
     height: 100%;
-    background-image: url('images/red-spark.png');
+    background-image: url('images/red-spark.png?v=2');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

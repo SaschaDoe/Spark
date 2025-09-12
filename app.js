@@ -39,6 +39,8 @@ let audioPlayer = null;
 // Initialize the app
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded, initializing app...');
+    console.log('Tracks array length:', tracks.length);
+    console.log('First few tracks:', tracks.slice(0, 3).map(t => t.title));
     
     initializePlayer();
     renderTracklist();
