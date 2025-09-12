@@ -1,13 +1,15 @@
 # SPARK Soundtrack 🎵
 
-> Original Soundtrack for a Film That Was Never Made
+> AI-Generated Soundtrack for a Film That Was Never Made
 
-A serverless web application for streaming and downloading the SPARK soundtrack - a musical journey through the story of Finn and Nova, two young heroes from enemy families who must work together to heal their dying sun.
+A serverless web application for streaming and downloading the SPARK soundtrack - a musical journey through the story of Finn and Nova, two young heroes from rival clans who must unite their opposing powers to restore the failing light that sustains their world.
+
+Created with [Suno AI](https://suno.com) - bringing imaginary film scores to life through artificial intelligence.
 
 ## 🌟 Features
 
 - **Streaming Player**: Listen to all 13 tracks online
-- **Full Album Download**: 200MB high-quality album package
+- **Full Album Download**: 200MB complete album package
 - **Responsive Design**: Works on desktop, tablet, and mobile
 - **Serverless Architecture**: Hosted on Netlify with Cloudflare R2 storage
 - **Patreon Integration**: Support the project and get exclusive content

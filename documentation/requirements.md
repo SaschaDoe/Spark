@@ -1,12 +1,14 @@
 # SPARK Soundtrack Requirements
 
 ## Project Overview
-**SPARK** - Original Soundtrack for a Film That Was Never Made
+**SPARK** - AI-Generated Soundtrack for a Film That Was Never Made
 
-A musical journey through a middle-grade fantasy adventure about two young heroes from enemy families who must work together to heal their dying sun and save their magical kingdom.
+A musical journey through a middle-grade fantasy adventure about two young heroes from rival clans who must unite their opposing powers to restore the failing light that sustains their mysterious realm.
+
+Created using [Suno AI](https://suno.com) to bring this imaginary film score to life through artificial intelligence.
 
 ## Core Concept
-This is a soundtrack album for an imaginary film based on the story of Finn and Nova - two teenagers with complementary magical abilities who discover that their "kingdom" is actually a generation ship, their "magic" is bioelectric technology, and their dying "sun" is a failing fusion reactor.
+This is a soundtrack album for an imaginary film based on the story of Finn and Nova - two teenagers with complementary abilities who must overcome ancient rivalries to heal the dying light at the heart of their world. What begins as a magical adventure gradually reveals deeper mysteries about the true nature of their realm.
 
 ## Musical Requirements
 
@@ -36,13 +38,13 @@ This is a soundtrack album for an imaginary film based on the story of Finn and 
 - Epilogue - hopeful but changed, hints at the stars beyond
 
 ### Musical Style Guidelines
-- **Genre Blend**: Orchestral fantasy with subtle electronic/synth elements (representing the hidden sci-fi nature)
-- **Dual Nature**: Surface-level magical/whimsical themes with underlying technological pulses
+- **Genre Blend**: Orchestral fantasy with subtle electronic/synth elements (representing hidden mysteries)
+- **Dual Nature**: Surface-level magical/whimsical themes with underlying enigmatic pulses
 - **Character Motifs**: 
   - Finn: Warm, solar-inspired melodies
   - Nova: Deep, rhythmic patterns
   - Together: Harmonizing creates "sparks" (musical crescendos)
-- **Hidden Layer**: Adults should notice sci-fi elements in the production that kids might miss
+- **Hidden Layer**: Adults should notice subtle technological elements that hint at deeper mysteries
 
 ### Emotional Arc
 1. Wonder and mystery
@@ -57,8 +59,8 @@ This is a soundtrack album for an imaginary film based on the story of Finn and 
 ## Technical Requirements
 
 ### Production Quality
-- Professional mixing and mastering
-- High-quality MP3 format
+- AI-generated using Suno platform
+- MP3 format delivery
 - Film score quality suitable for sync licensing
 
 ### Distribution
@@ -87,9 +89,9 @@ This is a soundtrack album for an imaginary film based on the story of Finn and 
 ### Core Themes to Emphasize
 - Unity despite differences
 - The cost of heroism
-- Technology vs. magic duality
-- Generational journey and hope
-- Fear of mortality (Seraphina/AI subplot)
+- Ancient mysteries vs. surface magic
+- Journey toward understanding and hope
+- Fear of mortality (Seraphina's desperate subplot)
 
 ### Consequences in Music
 The music should reflect that victories come with costs:
@@ -100,15 +102,15 @@ The music should reflect that victories come with costs:
 ## Visual Components
 
 ### Album Art Requirements
-- Dual imagery: magical kingdom surface / spaceship depths
-- Sun/fusion reactor as central image
+- Dual imagery: mystical realm surface with hints of deeper mysteries below
+- Dying sun/ancient light source as central image
 - Finn and Nova silhouettes with complementary energy
-- Hidden sci-fi elements for careful observers
+- Hidden technological elements for careful observers
 
 ### Track Visualizers
 - Abstract representations of each scene
 - Color coding: warm (Finn), cool (Nova), gold (Seraphina)
-- Particle effects suggesting both magic and technology
+- Particle effects suggesting both magic and hidden mysteries
 
 ## Release Strategy
 

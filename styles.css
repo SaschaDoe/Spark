@@ -127,7 +127,25 @@ nav {
 .subtitle {
     font-size: 1.5rem;
     color: var(--text-dim);
-    margin: 1rem 0 2rem;
+    margin: 1rem 0 0.5rem;
+}
+
+.ai-credit {
+    font-size: 1rem;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+}
+
+.suno-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.suno-link:hover {
+    color: var(--accent-gold);
+    text-decoration: underline;
 }
 
 .hero-buttons {
