@@ -32,14 +32,13 @@ exports.handler = async (event, context) => {
         // 2. Connect to Cloudflare R2 or AWS S3
         // 3. Generate a presigned URL for the 200MB album file
         
-        // Example with Cloudflare R2 (S3-compatible):
-        /*
+        // Cloudflare R2 integration
         const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3');
         const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
         
         const R2 = new S3Client({
             region: 'auto',
-            endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+            endpoint: 'https://576174baf004f97bc745e85efb36b7e8.r2.cloudflarestorage.com',
             credentials: {
                 accessKeyId: process.env.R2_ACCESS_KEY_ID,
                 secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
@@ -47,21 +46,18 @@ exports.handler = async (event, context) => {
         });
         
         const command = new GetObjectCommand({
-            Bucket: process.env.R2_BUCKET_NAME,
+            Bucket: 'sashbot',
             Key: 'albums/SPARK_Soundtrack_Complete.zip',
+            ResponseContentDisposition: 'attachment; filename="SPARK_Soundtrack_Complete.zip"',
         });
         
         const downloadUrl = await getSignedUrl(R2, command, { expiresIn: 3600 });
-        */
-        
-        // For demonstration, return a mock URL
-        const mockDownloadUrl = 'https://your-r2-bucket.r2.cloudflarestorage.com/albums/SPARK_Soundtrack_Complete.zip?presigned=true';
         
         return {
             statusCode: 200,
             headers,
             body: JSON.stringify({
-                downloadUrl: mockDownloadUrl,
+                downloadUrl: downloadUrl,
                 fileName: 'SPARK_Soundtrack_Complete.zip',
                 fileSize: '200MB',
                 expiresIn: 3600, // URL expires in 1 hour

@@ -29,21 +29,31 @@ exports.handler = async (event, context) => {
             };
         }
 
-        // In production, you would:
-        // 1. Validate the user's access (if needed)
-        // 2. Generate a presigned URL from R2/S3
-        // 3. Return the URL with an expiration time
-
-        // For demonstration, we'll return a placeholder
-        // In real implementation, use @aws-sdk/client-s3 and @aws-sdk/s3-request-presigner
+        // Cloudflare R2 integration
+        const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3');
+        const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
         
-        const mockUrl = `https://your-r2-bucket.r2.cloudflarestorage.com/tracks/track-${trackId}.mp3?presigned=true`;
+        const R2 = new S3Client({
+            region: 'auto',
+            endpoint: 'https://576174baf004f97bc745e85efb36b7e8.r2.cloudflarestorage.com',
+            credentials: {
+                accessKeyId: process.env.R2_ACCESS_KEY_ID,
+                secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
+            },
+        });
+        
+        const command = new GetObjectCommand({
+            Bucket: 'sashbot',
+            Key: `tracks/track-${trackId}.mp3`,
+        });
+        
+        const url = await getSignedUrl(R2, command, { expiresIn: 3600 });
         
         return {
             statusCode: 200,
             headers,
             body: JSON.stringify({
-                url: mockUrl,
+                url: url,
                 expiresIn: 3600, // URL expires in 1 hour
                 trackId: trackId,
             }),
