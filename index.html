@@ -24,18 +24,16 @@
 
     <main>
         <section class="hero">
+            <div class="cover">
+                <div class="cover-image"></div>
+            </div>
             <div class="hero-content">
-                <h1 class="title-animation">SPARK</h1>
                 <p class="subtitle">AI-Generated Soundtrack for a Film That Was Never Made</p>
                 <p class="ai-credit">Created with <a href="https://suno.com" target="_blank" class="suno-link">Suno AI</a></p>
                 <div class="hero-buttons">
-                    <button id="playButton" class="btn-primary">▶ Play Soundtrack</button>
+                    <button id="showTracklistButton" class="btn-primary">📜 View Song Stories & Lyrics</button>
                     <a href="https://patreon.com/sparksoundtrack" target="_blank" class="btn-secondary">Become a Patron</a>
                 </div>
-            </div>
-            <div class="sun-visual">
-                <div class="sun-core"></div>
-                <div class="sun-rays"></div>
             </div>
         </section>
 
@@ -65,10 +63,27 @@
                 <div class="album-showcase">
                     <div class="album-display">
                         <img src="images/red-spark.png" alt="SPARK Album Cover" class="album-art" id="albumArt">
-                        <div class="album-info">
-                            <h3>SPARK Soundtrack</h3>
-                            <p>13 tracks of AI-generated music</p>
-                            <p>Created with Suno AI</p>
+                        <div class="album-info" id="albumInfo">
+                            <div id="defaultInfo">
+                                <p>29 tracks of AI-generated music</p>
+                                <p>Created with Suno AI</p>
+                                <p class="info-hint">Click on any track below to see its story and lyrics</p>
+                            </div>
+                            <div id="trackDetailsInline" style="display: none;">
+                                <h3 id="selectedTrackTitle">Track Title</h3>
+                                <div class="inline-tabs">
+                                    <button class="inline-tab-btn active" data-tab="story">Story</button>
+                                    <button class="inline-tab-btn" data-tab="lyrics">Lyrics</button>
+                                </div>
+                                <div class="inline-content">
+                                    <div id="inlineStoryTab" class="inline-tab-pane active">
+                                        <p id="inlineTrackStory">Track story will appear here...</p>
+                                    </div>
+                                    <div id="inlineLyricsTab" class="inline-tab-pane">
+                                        <pre id="inlineTrackLyrics">Track lyrics will appear here...</pre>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -133,6 +148,9 @@
             </div>
         </section>
     </main>
+
+    <!-- Audio player (hidden) -->
+    <audio id="audioPlayer" style="display: none;"></audio>
 
     <footer>
         <div class="container">
