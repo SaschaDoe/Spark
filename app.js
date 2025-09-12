@@ -174,19 +174,21 @@ function setupEventListeners() {
     const modal = document.getElementById('downloadModal');
     const closeModal = document.querySelector('.close');
     
-    closeModal.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
-    
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
+    if (closeModal && modal) {
+        closeModal.addEventListener('click', () => {
             modal.style.display = 'none';
-        }
-    });
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    }
 }
 
 function togglePlay() {
-    if (audioPlayer.src) {
+    if (audioPlayer && audioPlayer.src) {
         if (isPlaying) {
             audioPlayer.pause();
         } else {
@@ -195,27 +197,33 @@ function togglePlay() {
         isPlaying = !isPlaying;
         updatePlayButton(isPlaying);
     } else {
-        // If no track is loaded, load the first one
-        selectTrack(0);
+        // If no track is loaded, show the first track details
+        if (tracks.length > 0) {
+            showTrackDetailsInline(0);
+        }
     }
 }
 
 function updatePlayButton(playing) {
     const playPauseBtn = document.getElementById('playPause');
-    playPauseBtn.textContent = playing ? '⏸' : '▶';
+    if (playPauseBtn) {
+        playPauseBtn.textContent = playing ? '⏸' : '▶';
+    }
 }
 
 function playPreviousTrack() {
     if (currentTrackIndex > 0) {
-        selectTrack(currentTrackIndex - 1);
-        if (isPlaying) audioPlayer.play();
+        currentTrackIndex--;
+        showTrackDetailsInline(currentTrackIndex);
+        if (audioPlayer && isPlaying) audioPlayer.play();
     }
 }
 
 function playNextTrack() {
     if (currentTrackIndex < tracks.length - 1) {
-        selectTrack(currentTrackIndex + 1);
-        if (isPlaying) audioPlayer.play();
+        currentTrackIndex++;
+        showTrackDetailsInline(currentTrackIndex);
+        if (audioPlayer && isPlaying) audioPlayer.play();
     }
 }
 
