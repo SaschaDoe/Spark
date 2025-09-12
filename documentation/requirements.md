@@ -58,12 +58,12 @@ This is a soundtrack album for an imaginary film based on the story of Finn and 
 
 ### Production Quality
 - Professional mixing and mastering
-- Both stereo and spatial audio versions
+- High-quality MP3 format
 - Film score quality suitable for sync licensing
 
 ### Distribution
-- Streaming platforms (Spotify, Apple Music, etc.)
-- Bandcamp for direct sales
+- Direct download from website
+- Streaming through website player
 - YouTube with visualizers or concept art
 
 ## Marketing & Monetization
@@ -124,8 +124,8 @@ The music should reflect that victories come with costs:
 - Commissioned artwork for each track
 
 ### Phase 3: Extended Universe
-- Remix album with electronic/synthwave versions
-- Acoustic EP focusing on character themes
+- Remix versions of select tracks
+- Character theme variations
 - Live performance possibilities
 
 ## Success Metrics
