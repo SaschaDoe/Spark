@@ -4,7 +4,8 @@
   "description": "SPARK - Original Soundtrack for a Film That Was Never Made",
   "main": "index.js",
   "scripts": {
-    "dev": "netlify dev",
+    "dev": "python -m http.server 8000 || npx http-server -p 8000",
+    "netlify": "netlify dev",
     "build": "echo 'No build step required for static site'",
     "deploy": "netlify deploy --prod"
   },
