@@ -243,6 +243,46 @@ h2 {
     margin-bottom: 1rem;
 }
 
+/* AI Generation Info */
+.ai-generation-info {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 119, 0, 0.2);
+}
+
+.ai-generation-info h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.ai-generation-info p {
+    color: var(--text-dim);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.ai-generation-info p:last-child {
+    margin-bottom: 0;
+}
+
+.ai-generation-info .suno-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.ai-generation-info .suno-link:hover {
+    color: #ffaa00;
+    text-decoration: underline;
+}
+
 /* Album Showcase */
 .album-showcase {
     background: var(--light-bg);
