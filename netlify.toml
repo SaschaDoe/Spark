@@ -1,9 +1,12 @@
 [build]
+  command = "npm install"
   publish = "."
   functions = "netlify/functions"
 
 [functions]
   node_bundler = "esbuild"
+  external_node_modules = ["@aws-sdk/client-s3", "@aws-sdk/s3-request-presigner"]
+  included_files = ["netlify/functions/**"]
 
 [[headers]]
   for = "/*"

@@ -1,6 +1,9 @@
 // This function generates a presigned URL for downloading the complete album
 // The album file (200MB) is stored in Cloudflare R2 or AWS S3
 
+const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3');
+const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
+
 exports.handler = async (event, context) => {
     console.log('Download album function called');
     console.log('HTTP Method:', event.httpMethod);
@@ -50,9 +53,6 @@ exports.handler = async (event, context) => {
         console.log('R2 credentials found, initializing S3 client');
         
         // Cloudflare R2 integration
-        const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3');
-        const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
-        
         const R2 = new S3Client({
             region: 'auto',
             endpoint: 'https://576174baf004f97bc745e85efb36b7e8.r2.cloudflarestorage.com',
