@@ -42,6 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Tracks array length:', tracks.length);
     console.log('First few tracks:', tracks.slice(0, 3).map(t => t.title));
     
+    // Check cover image loading
+    checkCoverImageLoading();
+    
     initializePlayer();
     renderTracklist();
     setupEventListeners();
@@ -422,3 +425,78 @@ window.addEventListener('scroll', () => {
         parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
     }
 });
+
+// Function to check cover image loading
+function checkCoverImageLoading() {
+    console.log('=== Checking cover image loading ===');
+    
+    // Check if the cover-image div exists
+    const coverDiv = document.querySelector('.cover-image');
+    if (!coverDiv) {
+        console.error('Cover image div not found!');
+        return;
+    }
+    
+    console.log('Cover div found:', coverDiv);
+    
+    // Get computed styles to check background image
+    const computedStyle = window.getComputedStyle(coverDiv);
+    const bgImage = computedStyle.backgroundImage;
+    console.log('Background image CSS value:', bgImage);
+    
+    // Extract URL from background-image
+    const urlMatch = bgImage.match(/url\(["']?([^"')]+)["']?\)/);
+    if (urlMatch && urlMatch[1]) {
+        const imageUrl = urlMatch[1];
+        console.log('Extracted image URL:', imageUrl);
+        
+        // Create a test image to verify loading
+        const testImg = new Image();
+        testImg.onload = function() {
+            console.log('✅ Cover image loaded successfully!');
+            console.log('Image dimensions:', this.width + 'x' + this.height);
+            console.log('Full image URL:', this.src);
+        };
+        testImg.onerror = function() {
+            console.error('❌ Cover image failed to load!');
+            console.error('Failed URL:', imageUrl);
+            console.error('Trying alternative paths...');
+            
+            // Try alternative paths
+            const alternativePaths = [
+                '/images/red-spark.png',
+                'images/red-spark.png',
+                './images/red-spark.png',
+                '/images/blue-spark.png' // fallback to blue if red doesn't exist
+            ];
+            
+            alternativePaths.forEach(path => {
+                const altImg = new Image();
+                altImg.onload = function() {
+                    console.log('✅ Alternative image found at:', path);
+                    // Apply the working path
+                    coverDiv.style.backgroundImage = `url('${path}')`;
+                };
+                altImg.onerror = function() {
+                    console.log('❌ Alternative path failed:', path);
+                };
+                altImg.src = path;
+            });
+        };
+        testImg.src = imageUrl;
+    } else {
+        console.error('Could not extract URL from background-image:', bgImage);
+    }
+    
+    // Also check the regular img tag
+    const albumArt = document.getElementById('albumArt');
+    if (albumArt) {
+        console.log('Album art img element found, src:', albumArt.src);
+        albumArt.onerror = function() {
+            console.error('Album art image failed to load:', this.src);
+        };
+        albumArt.onload = function() {
+            console.log('Album art loaded successfully');
+        };
+    }
+}
