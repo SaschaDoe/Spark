@@ -163,53 +163,74 @@ async function loadTrackAudio(track) {
 }
 
 function setupEventListeners() {
-    // Show tracklist button in hero
-    const tracklistButton = document.getElementById('showTracklistButton');
-    if (tracklistButton) {
-        tracklistButton.addEventListener('click', () => {
-            const soundtrack = document.getElementById('soundtrack');
-            if (soundtrack) {
-                soundtrack.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
-    } else {
-        console.warn('showTracklistButton not found');
-    }
-    
-    // Inline tab switching
-    document.querySelectorAll('.inline-tab-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const tabName = e.target.dataset.tab;
-            switchInlineTab(tabName);
-        });
-    });
-    
-    // Download button
-    const downloadButton = document.getElementById('downloadAlbum');
-    if (downloadButton) {
-        downloadButton.addEventListener('click', initiateDownload);
-    } else {
-        console.warn('downloadAlbum button not found');
-    }
-    
-    // Remove stream button functionality since it's removed
-    
-    // Modal
-    const modal = document.getElementById('downloadModal');
-    const closeModal = document.querySelector('.close');
-    
-    if (closeModal && modal) {
-        closeModal.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
+    try {
+        console.log('Setting up event listeners...');
         
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
+        // Show tracklist button in hero
+        const tracklistButton = document.getElementById('showTracklistButton');
+        if (tracklistButton) {
+            tracklistButton.addEventListener('click', () => {
+                const soundtrack = document.getElementById('soundtrack');
+                if (soundtrack) {
+                    soundtrack.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+            console.log('Tracklist button listener added');
+        } else {
+            console.warn('showTracklistButton not found');
+        }
+        
+        // Inline tab switching - with null check
+        const inlineTabButtons = document.querySelectorAll('.inline-tab-btn');
+        if (inlineTabButtons && inlineTabButtons.length > 0) {
+            inlineTabButtons.forEach(btn => {
+                if (btn) {
+                    btn.addEventListener('click', (e) => {
+                        const tabName = e.target.dataset.tab;
+                        if (tabName) {
+                            switchInlineTab(tabName);
+                        }
+                    });
+                }
+            });
+            console.log(`Added listeners to ${inlineTabButtons.length} inline tab buttons`);
+        } else {
+            console.warn('No inline-tab-btn elements found');
+        }
+        
+        // Download button
+        const downloadButton = document.getElementById('downloadAlbum');
+        if (downloadButton) {
+            downloadButton.addEventListener('click', initiateDownload);
+            console.log('Download button listener added');
+        } else {
+            console.warn('downloadAlbum button not found');
+        }
+        
+        // Modal
+        const modal = document.getElementById('downloadModal');
+        const closeModal = document.querySelector('.close');
+        
+        if (closeModal && modal) {
+            closeModal.addEventListener('click', () => {
                 modal.style.display = 'none';
-            }
-        });
+            });
+            
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            console.log('Modal listeners added');
+        } else {
+            console.warn('Modal elements not found');
+        }
+        
+        console.log('Event listeners setup complete');
+    } catch (error) {
+        console.error('Error in setupEventListeners:', error);
     }
 }
 
@@ -460,73 +481,91 @@ window.addEventListener('scroll', () => {
 function checkCoverImageLoading() {
     console.log('=== Checking cover image loading ===');
     
-    // Check if the cover-image div exists
-    const coverDiv = document.querySelector('.cover-image');
-    if (!coverDiv) {
-        console.error('Cover image div not found!');
+    // Now looking for img element instead of div
+    const coverImg = document.querySelector('.cover-image');
+    if (!coverImg) {
+        console.error('Cover image element not found!');
         return;
     }
     
-    console.log('Cover div found:', coverDiv);
+    console.log('Cover image element found:', coverImg);
+    console.log('Current src:', coverImg.src);
     
-    // Get computed styles to check background image
-    const computedStyle = window.getComputedStyle(coverDiv);
-    const bgImage = computedStyle.backgroundImage;
-    console.log('Background image CSS value:', bgImage);
-    
-    // Extract URL from background-image
-    const urlMatch = bgImage.match(/url\(["']?([^"')]+)["']?\)/);
-    if (urlMatch && urlMatch[1]) {
-        const imageUrl = urlMatch[1];
-        console.log('Extracted image URL:', imageUrl);
-        
-        // Create a test image to verify loading
-        const testImg = new Image();
-        testImg.onload = function() {
+    // If image is already loaded
+    if (coverImg.complete) {
+        if (coverImg.naturalWidth === 0) {
+            console.error('❌ Cover image failed to load from:', coverImg.src);
+            tryAlternativeImages(coverImg);
+        } else {
+            console.log('✅ Cover image already loaded successfully!');
+            console.log('Image dimensions:', coverImg.naturalWidth + 'x' + coverImg.naturalHeight);
+        }
+    } else {
+        // Add load and error handlers
+        coverImg.onload = function() {
             console.log('✅ Cover image loaded successfully!');
-            console.log('Image dimensions:', this.width + 'x' + this.height);
+            console.log('Image dimensions:', this.naturalWidth + 'x' + this.naturalHeight);
             console.log('Full image URL:', this.src);
         };
-        testImg.onerror = function() {
+        
+        coverImg.onerror = function() {
             console.error('❌ Cover image failed to load!');
-            console.error('Failed URL:', imageUrl);
-            console.error('Trying alternative paths...');
-            
-            // Try alternative paths
-            const alternativePaths = [
-                '/images/red-spark.png',
-                'images/red-spark.png',
-                './images/red-spark.png',
-                '/images/blue-spark.png' // fallback to blue if red doesn't exist
-            ];
-            
-            alternativePaths.forEach(path => {
-                const altImg = new Image();
-                altImg.onload = function() {
-                    console.log('✅ Alternative image found at:', path);
-                    // Apply the working path
-                    coverDiv.style.backgroundImage = `url('${path}')`;
-                };
-                altImg.onerror = function() {
-                    console.log('❌ Alternative path failed:', path);
-                };
-                altImg.src = path;
-            });
+            console.error('Failed URL:', this.src);
+            tryAlternativeImages(this);
         };
-        testImg.src = imageUrl;
-    } else {
-        console.error('Could not extract URL from background-image:', bgImage);
     }
     
-    // Also check the regular img tag
+    // Also check the regular album art img tag
     const albumArt = document.getElementById('albumArt');
     if (albumArt) {
         console.log('Album art img element found, src:', albumArt.src);
-        albumArt.onerror = function() {
-            console.error('Album art image failed to load:', this.src);
-        };
-        albumArt.onload = function() {
-            console.log('Album art loaded successfully');
-        };
+        if (albumArt.complete && albumArt.naturalWidth === 0) {
+            console.error('Album art failed to load:', albumArt.src);
+            albumArt.src = 'images/red-spark.png'; // Try relative path
+        }
     }
+}
+
+function tryAlternativeImages(imgElement) {
+    console.log('Trying alternative image paths...');
+    
+    const alternativePaths = [
+        'images/red-spark.png',
+        './images/red-spark.png',
+        '/images/red-spark.png',
+        'images/blue-spark.png',
+        '/images/blue-spark.png',
+        // Try with different URL formats
+        window.location.origin + '/images/red-spark.png',
+        // Base64 fallback - a small red square as last resort
+        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAFBQIAX8jx0gAAAABJRU5ErkJggg=='
+    ];
+    
+    let pathIndex = 0;
+    
+    function tryNextPath() {
+        if (pathIndex >= alternativePaths.length) {
+            console.error('All alternative paths failed. Using placeholder.');
+            imgElement.style.backgroundColor = '#ff0000';
+            imgElement.alt = 'SPARK - Image failed to load';
+            return;
+        }
+        
+        const path = alternativePaths[pathIndex];
+        console.log(`Trying path ${pathIndex + 1}/${alternativePaths.length}: ${path}`);
+        
+        const testImg = new Image();
+        testImg.onload = function() {
+            console.log('✅ Alternative image found at:', path);
+            imgElement.src = path;
+        };
+        testImg.onerror = function() {
+            console.log('❌ Alternative path failed:', path);
+            pathIndex++;
+            tryNextPath();
+        };
+        testImg.src = path;
+    }
+    
+    tryNextPath();
 }
