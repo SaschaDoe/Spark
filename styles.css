@@ -659,7 +659,35 @@ footer {
 /* Responsive */
 @media (max-width: 768px) {
     .nav-links {
+        display: flex;
+        gap: 0.8rem;
+        flex-wrap: nowrap;
+    }
+    
+    .nav-links li:not(.mobile-show) {
         display: none;
+    }
+    
+    .nav-links a {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.6rem;
+        white-space: nowrap;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-icon {
+        margin-right: 0.3rem;
+        font-size: 1rem;
+    }
+    
+    .mobile-show {
+        background-color: rgba(255, 119, 0, 0.1);
+        border-radius: 8px;
     }
     
     .cover {
