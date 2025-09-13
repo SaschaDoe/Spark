@@ -65,10 +65,7 @@ nav {
 .logo {
     font-size: 1.8rem;
     font-weight: bold;
-    background: var(--gradient-sun);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: white;
 }
 
 .nav-links {
@@ -666,8 +663,10 @@ footer {
     }
     
     .cover {
-        width: 250px;
-        height: 250px;
+        width: 85vw;
+        max-width: 350px;
+        height: 85vw;
+        max-height: 350px;
         margin-bottom: 1.5rem;
     }
     
