@@ -107,28 +107,37 @@ function showTrackDetailsInline(index) {
     const track = tracks[index];
     
     // Hide default info and show track details
-    document.getElementById('defaultInfo').style.display = 'none';
-    document.getElementById('trackDetailsInline').style.display = 'block';
+    const defaultInfo = document.getElementById('defaultInfo');
+    const trackDetailsInline = document.getElementById('trackDetailsInline');
+    if (defaultInfo) defaultInfo.style.display = 'none';
+    if (trackDetailsInline) trackDetailsInline.style.display = 'block';
     
     // Update inline content
-    document.getElementById('selectedTrackTitle').textContent = track.title;
-    document.getElementById('inlineTrackStory').textContent = track.story || 'Story coming soon...';
-    document.getElementById('inlineTrackLyrics').textContent = track.lyrics || 'Lyrics coming soon...';
+    const selectedTitle = document.getElementById('selectedTrackTitle');
+    const inlineStory = document.getElementById('inlineTrackStory');
+    const inlineLyrics = document.getElementById('inlineTrackLyrics');
+    if (selectedTitle) selectedTitle.textContent = track.title;
+    if (inlineStory) inlineStory.textContent = track.story || 'Story coming soon...';
+    if (inlineLyrics) inlineLyrics.textContent = track.lyrics || 'Lyrics coming soon...';
     
     // Update active track in list
     document.querySelectorAll('.track-item').forEach(item => {
         item.classList.remove('active');
     });
-    document.querySelector(`[data-index="${index}"]`).classList.add('active');
+    const activeTrack = document.querySelector(`[data-index="${index}"]`);
+    if (activeTrack) activeTrack.classList.add('active');
     
     // Reset to story tab
     switchInlineTab('story');
     
     // Scroll to the album info area where the track details are shown
-    document.getElementById('albumInfo').scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-    });
+    const albumInfo = document.getElementById('albumInfo');
+    if (albumInfo) {
+        albumInfo.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+    }
 }
 
 async function loadTrackAudio(track) {
@@ -155,12 +164,19 @@ async function loadTrackAudio(track) {
 
 function setupEventListeners() {
     // Show tracklist button in hero
-    document.getElementById('showTracklistButton').addEventListener('click', () => {
-        document.getElementById('soundtrack').scrollIntoView({
-            behavior: 'smooth'
+    const tracklistButton = document.getElementById('showTracklistButton');
+    if (tracklistButton) {
+        tracklistButton.addEventListener('click', () => {
+            const soundtrack = document.getElementById('soundtrack');
+            if (soundtrack) {
+                soundtrack.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         });
-    });
-    
+    } else {
+        console.warn('showTracklistButton not found');
+    }
     
     // Inline tab switching
     document.querySelectorAll('.inline-tab-btn').forEach(btn => {
@@ -171,7 +187,12 @@ function setupEventListeners() {
     });
     
     // Download button
-    document.getElementById('downloadAlbum').addEventListener('click', initiateDownload);
+    const downloadButton = document.getElementById('downloadAlbum');
+    if (downloadButton) {
+        downloadButton.addEventListener('click', initiateDownload);
+    } else {
+        console.warn('downloadAlbum button not found');
+    }
     
     // Remove stream button functionality since it's removed
     
@@ -275,13 +296,15 @@ function switchTab(tabName) {
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('active');
     });
-    document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+    const activeBtn = document.querySelector(`[data-tab="${tabName}"]`);
+    if (activeBtn) activeBtn.classList.add('active');
     
     // Update tab content
     document.querySelectorAll('.tab-pane').forEach(pane => {
         pane.classList.remove('active');
     });
-    document.getElementById(`${tabName}Tab`).classList.add('active');
+    const activeTab = document.getElementById(`${tabName}Tab`);
+    if (activeTab) activeTab.classList.add('active');
 }
 
 function switchInlineTab(tabName) {
@@ -289,13 +312,15 @@ function switchInlineTab(tabName) {
     document.querySelectorAll('.inline-tab-btn').forEach(btn => {
         btn.classList.remove('active');
     });
-    document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+    const activeBtn = document.querySelector(`[data-tab="${tabName}"]`);
+    if (activeBtn) activeBtn.classList.add('active');
     
     // Update inline tab content
     document.querySelectorAll('.inline-tab-pane').forEach(pane => {
         pane.classList.remove('active');
     });
-    document.getElementById(`inline${tabName.charAt(0).toUpperCase() + tabName.slice(1)}Tab`).classList.add('active');
+    const activeTab = document.getElementById(`inline${tabName.charAt(0).toUpperCase() + tabName.slice(1)}Tab`);
+    if (activeTab) activeTab.classList.add('active');
 }
 
 async function initiateDownload() {
@@ -304,6 +329,11 @@ async function initiateDownload() {
     const modal = document.getElementById('downloadModal');
     const progressBar = document.getElementById('downloadProgress');
     const status = document.getElementById('downloadStatus');
+    
+    if (!modal || !progressBar || !status) {
+        console.error('Download modal elements not found');
+        return;
+    }
     
     console.log('Opening download modal');
     modal.style.display = 'block';
@@ -391,7 +421,7 @@ function simulateDownloadProgress(progressBar, status) {
             clearInterval(interval);
             status.textContent = 'Download complete! Check your downloads folder.';
             setTimeout(() => {
-                document.getElementById('downloadModal').style.display = 'none';
+                if (modal) modal.style.display = 'none';
                 progressBar.style.width = '0%';
             }, 3000);
         }
