@@ -209,24 +209,6 @@ function setupEventListeners() {
             console.warn('downloadAlbum button not found');
         }
         
-        // Modal
-        const modal = document.getElementById('downloadModal');
-        const closeModal = document.querySelector('.close');
-        
-        if (closeModal && modal) {
-            closeModal.addEventListener('click', () => {
-                modal.style.display = 'none';
-            });
-            
-            window.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
-            console.log('Modal listeners added');
-        } else {
-            console.warn('Modal elements not found');
-        }
         
         console.log('Event listeners setup complete');
     } catch (error) {
@@ -347,23 +329,16 @@ function switchInlineTab(tabName) {
 async function initiateDownload() {
     console.log('Download button clicked - initiating download process');
     
-    const modal = document.getElementById('downloadModal');
-    const progressBar = document.getElementById('downloadProgress');
-    const status = document.getElementById('downloadStatus');
-    
-    if (!modal || !progressBar || !status) {
-        console.error('Download modal elements not found');
-        return;
+    const downloadButton = document.getElementById('downloadAlbum');
+    if (downloadButton) {
+        const originalText = downloadButton.textContent;
+        downloadButton.textContent = 'Preparing download...';
+        downloadButton.disabled = true;
     }
-    
-    console.log('Opening download modal');
-    modal.style.display = 'block';
-    status.textContent = 'Requesting download link...';
     
     try {
         console.log('Fetching presigned URL from Netlify function');
         
-        // Fetch presigned URL from Netlify function
         const response = await fetch('/.netlify/functions/download-album', {
             method: 'POST',
             headers: {
@@ -372,86 +347,52 @@ async function initiateDownload() {
         });
         
         console.log('Response status:', response.status);
-        console.log('Response headers:', Object.fromEntries(response.headers.entries()));
         
         if (response.ok) {
             const data = await response.json();
             console.log('Received download data:', data);
             
-            status.textContent = 'Starting download...';
-            
-            // Validate the download URL
             if (!data.downloadUrl) {
-                console.error('No download URL received from server');
-                status.textContent = 'Error: No download URL provided';
-                return;
+                throw new Error('No download URL received from server');
             }
             
-            console.log('Creating download link with URL:', data.downloadUrl);
-            
-            // Trigger actual download
+            // Trigger download
             const link = document.createElement('a');
             link.href = data.downloadUrl;
-            link.download = data.fileName || 'SPARK_Soundtrack_Complete.zip';
-            
-            // Add the link to the DOM temporarily to ensure it works
+            link.download = data.fileName || 'Spark_Soundtrack.zip';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
             
-            console.log('Download link clicked, starting progress simulation');
-            
-            // Show progress simulation
-            simulateDownloadProgress(progressBar, status);
+            // Show success message
+            if (downloadButton) {
+                downloadButton.textContent = 'Download started!';
+                setTimeout(() => {
+                    downloadButton.textContent = originalText;
+                    downloadButton.disabled = false;
+                }, 3000);
+            }
         } else {
             const errorText = await response.text();
             console.error('Download failed with status:', response.status);
             console.error('Error response:', errorText);
             
-            status.textContent = 'Download error: ' + (response.status === 404 ? 'File not found on server' : 'Please try again later');
-            
-            // Log specific error details for debugging
-            if (response.status === 500) {
-                console.error('Server error - check Netlify function logs');
-            } else if (response.status === 403) {
-                console.error('Access denied - check R2 credentials and permissions');
-            }
+            throw new Error(response.status === 404 ? 'File not found on server' : 'Server error');
         }
     } catch (error) {
-        console.error('Network or fetch error:', error);
-        console.error('Error details:', {
-            message: error.message,
-            stack: error.stack,
-            name: error.name
-        });
+        console.error('Download error:', error);
         
-        status.textContent = 'Connection error. Please check your internet connection and try again.';
-        
-        // For demo purposes, still show progress
-        console.log('Running demo progress simulation due to error');
-        simulateDownloadProgress(progressBar, status);
+        // Show error message
+        if (downloadButton) {
+            downloadButton.textContent = 'Download failed - try again';
+            setTimeout(() => {
+                downloadButton.textContent = originalText;
+                downloadButton.disabled = false;
+            }, 3000);
+        }
     }
 }
 
-function simulateDownloadProgress(progressBar, status) {
-    let progress = 0;
-    const interval = setInterval(() => {
-        progress += Math.random() * 15;
-        if (progress >= 100) {
-            progress = 100;
-            clearInterval(interval);
-            status.textContent = 'Download complete! Check your downloads folder.';
-            setTimeout(() => {
-                if (modal) modal.style.display = 'none';
-                progressBar.style.width = '0%';
-            }, 3000);
-        }
-        progressBar.style.width = `${progress}%`;
-        if (progress < 100) {
-            status.textContent = `Downloading... ${Math.floor(progress)}%`;
-        }
-    }, 500);
-}
 
 function setupSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
