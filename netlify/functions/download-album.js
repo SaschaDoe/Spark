@@ -112,7 +112,7 @@ exports.handler = async (event, context) => {
             errorMessage = 'Storage bucket not found';
             statusCode = 404;
         } else if (error.name === 'NoSuchKey') {
-            errorMessage = 'Album file not found in storage';
+            errorMessage = 'Album file not found in storage. Please upload SPARK_Soundtrack_Complete.zip to the albums/ folder in your R2 bucket.';
             statusCode = 404;
         } else if (error.code === 'ENOTFOUND' || error.code === 'ECONNREFUSED') {
             errorMessage = 'Cannot connect to storage service';
