@@ -66,8 +66,8 @@ exports.handler = async (event, context) => {
         
         const command = new GetObjectCommand({
             Bucket: 'sashbot',
-            Key: 'albums/SPARK_Soundtrack_Complete.zip',
-            ResponseContentDisposition: 'attachment; filename="SPARK_Soundtrack_Complete.zip"',
+            Key: 'Spark Soundtrack.zip',
+            ResponseContentDisposition: 'attachment; filename="Spark_Soundtrack.zip"',
         });
         
         console.log('Generating presigned URL with 1 hour expiration');
@@ -80,8 +80,8 @@ exports.handler = async (event, context) => {
         
         const response = {
             downloadUrl: downloadUrl,
-            fileName: 'SPARK_Soundtrack_Complete.zip',
-            fileSize: '200MB',
+            fileName: 'Spark_Soundtrack.zip',
+            fileSize: '205MB',
             expiresIn: 3600, // URL expires in 1 hour
         };
         
@@ -112,7 +112,7 @@ exports.handler = async (event, context) => {
             errorMessage = 'Storage bucket not found';
             statusCode = 404;
         } else if (error.name === 'NoSuchKey') {
-            errorMessage = 'Album file not found in storage. Please upload SPARK_Soundtrack_Complete.zip to the albums/ folder in your R2 bucket.';
+            errorMessage = 'Album file not found in storage. Looking for: Spark Soundtrack.zip';
             statusCode = 404;
         } else if (error.code === 'ENOTFOUND' || error.code === 'ECONNREFUSED') {
             errorMessage = 'Cannot connect to storage service';
