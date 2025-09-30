@@ -287,26 +287,27 @@ h2 {
 
 /* Album Showcase */
 .album-showcase {
-    background: var(--light-bg);
-    border-radius: 20px;
-    padding: 2rem;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
     margin-bottom: 2rem;
 }
 
 .album-display {
     display: flex;
     gap: 2rem;
-    align-items: center;
+    align-items: flex-start;
 }
 
-.album-art {
-    width: 200px;
-    height: 200px;
+.album-info {
+    width: 100%;
+}
+
+#defaultInfo {
+    background: var(--light-bg);
     border-radius: 15px;
-    object-fit: contain;
-    background: transparent;
-    padding: 0;
-    box-shadow: none;
+    padding: 2rem;
+    text-align: center;
 }
 
 .album-info h3 {
@@ -318,11 +319,12 @@ h2 {
 .album-info p {
     color: var(--text-dim);
     margin-bottom: 0.3rem;
+    font-size: 1.1rem;
 }
 
 .info-hint {
     font-style: italic;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--primary-color);
     margin-top: 1rem !important;
 }
@@ -330,6 +332,9 @@ h2 {
 /* Inline Track Details */
 #trackDetailsInline {
     animation: fadeIn 0.3s ease-in-out;
+    background: var(--light-bg);
+    border-radius: 15px;
+    padding: 2rem;
 }
 
 @keyframes fadeIn {
@@ -339,8 +344,15 @@ h2 {
 
 #selectedTrackTitle {
     color: var(--primary-color);
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.inline-content-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
 }
 
 .inline-tabs {
@@ -348,6 +360,10 @@ h2 {
     gap: 0.5rem;
     margin-bottom: 1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.inline-tabs.mobile-only {
+    display: none;
 }
 
 .inline-tab-btn {
@@ -370,31 +386,91 @@ h2 {
     color: var(--text-light);
 }
 
-.inline-tab-pane {
-    display: none;
-    max-height: 200px;
-    overflow-y: auto;
+.inline-content {
+    display: contents;
 }
 
-.inline-tab-pane.active {
+.inline-tab-pane {
     display: block;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Custom scrollbar for lyrics section - Dark theme */
+.inline-tab-pane::-webkit-scrollbar {
+    width: 6px;
+}
+
+.inline-tab-pane::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin: 4px 0;
+}
+
+.inline-tab-pane::-webkit-scrollbar-thumb {
+    background: rgba(255, 107, 53, 0.4);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.inline-tab-pane::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 107, 53, 0.6);
+}
+
+/* Firefox scrollbar */
+.inline-tab-pane {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 107, 53, 0.4) rgba(255, 255, 255, 0.05);
+}
+
+#inlineLyricsTab {
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.6), rgba(26, 31, 58, 0.4));
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 107, 53, 0.15);
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 #inlineTrackLyrics {
-    background: rgba(0, 0, 0, 0.2);
-    padding: 1rem;
-    border-radius: 8px;
-    font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 0.95rem;
+    line-height: 1.9;
     white-space: pre-wrap;
-    color: var(--text-light);
+    color: rgba(224, 230, 237, 0.95);
     margin: 0;
+    padding: 0;
+}
+
+#inlineStoryTab {
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.4), rgba(26, 31, 58, 0.2));
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(74, 144, 226, 0.15);
 }
 
 #inlineTrackStory {
     color: var(--text-light);
-    line-height: 1.6;
+    line-height: 1.8;
     margin: 0;
+    padding: 0;
+}
+
+/* Section headers for story and lyrics on desktop */
+.inline-tab-pane::before {
+    display: block;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+#inlineStoryTab::before {
+    content: "Story";
+}
+
+#inlineLyricsTab::before {
+    content: "Lyrics";
 }
 
 
@@ -642,11 +718,11 @@ footer {
         gap: 0.8rem;
         flex-wrap: nowrap;
     }
-    
+
     .nav-links li:not(.mobile-show) {
         display: none;
     }
-    
+
     .nav-links a {
         font-size: 0.85rem;
         padding: 0.4rem 0.6rem;
@@ -654,26 +730,26 @@ footer {
         border-radius: 8px;
         transition: background-color 0.3s ease;
     }
-    
+
     .nav-links a:hover {
         background-color: rgba(255, 255, 255, 0.1);
     }
-    
+
     .nav-icon {
         margin-right: 0.3rem;
         font-size: 1rem;
     }
-    
+
     .mobile-show {
         background-color: rgba(255, 119, 0, 0.1);
         border-radius: 8px;
     }
-    
+
     .hero {
         padding: 4rem 1rem 2rem;
         flex-direction: column;
     }
-    
+
     .cover {
         width: 90vw;
         max-width: 400px;
@@ -681,24 +757,40 @@ footer {
         max-height: 400px;
         margin-bottom: 1.5rem;
     }
-    
+
     .hero-content {
         max-width: 100%;
         text-align: center;
     }
-    
+
     .album-display {
         flex-direction: column;
         text-align: center;
     }
-    
-    .album-art {
-        width: 150px;
-        height: 150px;
-    }
-    
+
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+    }
+
+    /* Mobile: Show tabs, stack content */
+    .inline-tabs.mobile-only {
+        display: flex;
+    }
+
+    .inline-content {
+        display: block;
+    }
+
+    .inline-tab-pane {
+        display: none;
+    }
+
+    .inline-tab-pane.active {
+        display: block;
+    }
+
+    .inline-tab-pane::before {
+        display: none;
     }
 }

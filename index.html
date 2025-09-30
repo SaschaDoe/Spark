@@ -66,7 +66,6 @@
                 </div>
                 <div class="album-showcase">
                     <div class="album-display">
-                        <img src="resources/images/red-spark.png" alt="SPARK Album Cover" class="album-art" id="albumArt">
                         <div class="album-info" id="albumInfo">
                             <div id="defaultInfo">
                                 <p>29 original tracks</p>
@@ -75,16 +74,18 @@
                             </div>
                             <div id="trackDetailsInline" style="display: none;">
                                 <h3 id="selectedTrackTitle">Track Title</h3>
-                                <div class="inline-tabs">
+                                <div class="inline-tabs mobile-only">
                                     <button class="inline-tab-btn active" data-tab="story">Story</button>
                                     <button class="inline-tab-btn" data-tab="lyrics">Lyrics</button>
                                 </div>
-                                <div class="inline-content">
-                                    <div id="inlineStoryTab" class="inline-tab-pane active">
-                                        <p id="inlineTrackStory">Track story will appear here...</p>
-                                    </div>
-                                    <div id="inlineLyricsTab" class="inline-tab-pane">
-                                        <pre id="inlineTrackLyrics">Track lyrics will appear here...</pre>
+                                <div class="inline-content-wrapper">
+                                    <div class="inline-content">
+                                        <div id="inlineLyricsTab" class="inline-tab-pane">
+                                            <pre id="inlineTrackLyrics">Track lyrics will appear here...</pre>
+                                        </div>
+                                        <div id="inlineStoryTab" class="inline-tab-pane active">
+                                            <p id="inlineTrackStory">Track story will appear here...</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

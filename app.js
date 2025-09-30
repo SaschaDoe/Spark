@@ -1,8 +1,78 @@
 // Track data for the SPARK soundtrack - Based on actual MP3 files
 const tracks = [
     { id: 1, title: "01 Disney Intro", duration: "3:24", description: "The magical beginning", story: "The journey starts with the familiar warmth of storytelling magic, setting the stage for an epic tale.", lyrics: "Coming soon..." },
-    { id: 2, title: "02 Kingdom Opening", duration: "4:15", description: "Welcome to the realm", story: "As dawn breaks over the mysterious realm, we're introduced to a world of Sun Folk and Deep Folk.", lyrics: "Coming soon..." },
-    { id: 3, title: "03 Sun Hiccups", duration: "3:42", description: "The great light falters", story: "Something is wrong with the great sun that powers the realm. Its light flickers and dims.", lyrics: "Coming soon..." },
+    { id: 2, title: "02 Kingdom Opening", duration: "4:15", description: "Welcome to the realm", story: "Just moments ago the 2 sister stars were still visible, but already the sun rises over a mysterious kingdom. The sun people set to work while in the Wildlands the animals awaken, just as in the distant jungle a terrible beast lies in wait for those who are foolish enough to approach it.", lyrics: "Coming soon..." },
+    { id: 3, title: "03 Sun Hiccups", duration: "3:42", description: "The great light falters", story: "Something is wrong with the great sun that powers the realm. Its light flickers and dims.", lyrics: `[Verse 1]
+Wake up early, climb the tower high
+Check the crystals that catch the sky
+"Morning, sparkles," that's what I say
+"Time to start another day"
+
+Polish the mirrors, oil the gears
+Been learning this for three long years
+The elders say I've got the touch
+For keeping sunshine bright and such
+
+[Pre-Chorus]
+But wait... what's that?
+The light just... stopped?
+
+[Chorus]
+The sun's got hiccups! Hiccup-cup-cups!
+Flickering down then lighting up
+Never seen our sunshine do this dance
+Maybe it just needs a second chance
+The sun's got hiccups! Don't give up!
+We'll help you shine, light back up!
+Everything's gonna be okay
+Our sun will shine another day!
+
+[Verse 2]
+Wrench in hand, I check each part
+Every circuit, I know by heart
+"Come on, sunshine, what's the matter?"
+Why do your warm beams scatter?
+
+I want to fix what's broken here
+I want to make the darkness clear
+I want to be the one who knows
+How to help our sunshine glow
+
+[Pre-Chorus]
+But wait... there's more
+It's getting worse!
+
+[Chorus]
+The sun's got hiccups! Hiccup-cup-cups!
+Flickering down then lighting up
+Never seen our sunshine do this dance
+This might be more than second chance
+The sun's got hiccups! Don't give up!
+We'll help you shine, light back up!
+Everything's gonna be okay...
+...Right?
+
+[Bridge]
+I learned to trust what's in my heart
+When broken things all fall apart
+Maybe what our sun needs most
+Isn't tools or fixing posts
+Maybe it needs to know we care
+That someone's always gonna be there
+
+[Final Chorus]
+The sun's got hiccups! But that's okay!
+We'll figure this out day by day
+I may be young but I'm not scared
+Our sunshine knows that I still care
+The sun's got hiccups! We won't give up!
+Love will help you light back up!
+Everything's gonna be okay
+Tomorrow brings another way!
+
+[Outro]
+"Stay strong, sunshine, I'm still here
+But maybe... maybe I need help, I fear"` },
     { id: 4, title: "04 Underground Rider", duration: "4:08", description: "Journey into the depths", story: "Our heroes venture into underground passages, discovering hidden tunnels and ancient secrets.", lyrics: "Coming soon..." },
     { id: 5, title: "05 Sparks", duration: "3:56", description: "When powers create magic", story: "The moment when Finn and Nova's energies first connect, creating the sparks that give our story its name.", lyrics: "Coming soon..." },
     { id: 6, title: "06 Seraphina - The Angel Lady", duration: "4:23", description: "Beautiful deception", story: "Lady Seraphina appears with angelic beauty and grace, but beneath lies a darker purpose.", lyrics: "Coming soon..." },
@@ -105,31 +175,51 @@ function renderTracklist() {
 
 function showTrackDetailsInline(index) {
     const track = tracks[index];
-    
+
     // Hide default info and show track details
     const defaultInfo = document.getElementById('defaultInfo');
     const trackDetailsInline = document.getElementById('trackDetailsInline');
     if (defaultInfo) defaultInfo.style.display = 'none';
     if (trackDetailsInline) trackDetailsInline.style.display = 'block';
-    
+
     // Update inline content
     const selectedTitle = document.getElementById('selectedTrackTitle');
     const inlineStory = document.getElementById('inlineTrackStory');
     const inlineLyrics = document.getElementById('inlineTrackLyrics');
+    const lyricsTab = document.getElementById('inlineLyricsTab');
+    const contentWrapper = document.querySelector('.inline-content-wrapper');
+
     if (selectedTitle) selectedTitle.textContent = track.title;
     if (inlineStory) inlineStory.textContent = track.story || 'Story coming soon...';
     if (inlineLyrics) inlineLyrics.textContent = track.lyrics || 'Lyrics coming soon...';
-    
+
+    // Check if lyrics exist
+    const hasLyrics = track.lyrics && track.lyrics !== 'Coming soon...';
+
+    // Show/hide lyrics section based on availability
+    if (lyricsTab) {
+        lyricsTab.style.display = hasLyrics ? 'block' : 'none';
+    }
+
+    // Adjust layout: if no lyrics, make story full width
+    if (contentWrapper) {
+        if (hasLyrics) {
+            contentWrapper.style.gridTemplateColumns = '2fr 1fr';
+        } else {
+            contentWrapper.style.gridTemplateColumns = '1fr';
+        }
+    }
+
     // Update active track in list
     document.querySelectorAll('.track-item').forEach(item => {
         item.classList.remove('active');
     });
     const activeTrack = document.querySelector(`[data-index="${index}"]`);
     if (activeTrack) activeTrack.classList.add('active');
-    
+
     // Reset to story tab
     switchInlineTab('story');
-    
+
     // Scroll to the album info area where the track details are shown
     const albumInfo = document.getElementById('albumInfo');
     if (albumInfo) {
