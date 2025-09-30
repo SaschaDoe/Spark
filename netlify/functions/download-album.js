@@ -51,21 +51,21 @@ exports.handler = async (event, context) => {
         }
         
         console.log('R2 credentials found, initializing S3 client');
-        
+
         // Cloudflare R2 integration
         const R2 = new S3Client({
             region: 'auto',
-            endpoint: 'https://576174baf004f97bc745e85efb36b7e8.r2.cloudflarestorage.com',
+            endpoint: process.env.R2_ENDPOINT,
             credentials: {
                 accessKeyId: process.env.R2_ACCESS_KEY_ID,
                 secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
             },
         });
-        
+
         console.log('S3 client initialized, creating GetObjectCommand');
-        
+
         const command = new GetObjectCommand({
-            Bucket: 'sashbot',
+            Bucket: process.env.R2_BUCKET_NAME,
             Key: 'Spark Soundtrack.zip',
             ResponseContentDisposition: 'attachment; filename="Spark_Soundtrack.zip"',
         });

@@ -32,18 +32,18 @@ exports.handler = async (event, context) => {
         // Cloudflare R2 integration
         const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3');
         const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
-        
+
         const R2 = new S3Client({
             region: 'auto',
-            endpoint: 'https://576174baf004f97bc745e85efb36b7e8.r2.cloudflarestorage.com',
+            endpoint: process.env.R2_ENDPOINT,
             credentials: {
                 accessKeyId: process.env.R2_ACCESS_KEY_ID,
                 secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
             },
         });
-        
+
         const command = new GetObjectCommand({
-            Bucket: 'sashbot',
+            Bucket: process.env.R2_BUCKET_NAME,
             Key: `tracks/track-${trackId}.mp3`,
         });
         
