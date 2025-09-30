@@ -457,10 +457,11 @@ function switchInlineTab(tabName) {
 
 async function initiateDownload() {
     console.log('Download button clicked - initiating download process');
-    
+
     const downloadButton = document.getElementById('downloadAlbum');
+    const originalText = downloadButton ? downloadButton.textContent : 'Download Album (200MB)';
+
     if (downloadButton) {
-        const originalText = downloadButton.textContent;
         downloadButton.textContent = 'Preparing download...';
         downloadButton.disabled = true;
     }
