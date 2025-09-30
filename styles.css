@@ -355,15 +355,16 @@ h2 {
     gap: 2rem;
 }
 
+/* Tabs - hidden on desktop, shown on mobile */
 .inline-tabs {
-    display: flex;
+    display: none;
     gap: 0.5rem;
     margin-bottom: 1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.inline-tabs.mobile-only {
-    display: none;
+.inline-tabs.hidden {
+    display: none !important;
 }
 
 .inline-tab-btn {
@@ -386,15 +387,14 @@ h2 {
     color: var(--text-light);
 }
 
-.inline-content {
-    display: contents;
-}
-
 .inline-tab-pane {
-    display: block;
     max-height: 500px;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+.inline-tab-pane.hidden {
+    display: none !important;
 }
 
 /* Custom scrollbar for lyrics section - Dark theme */
@@ -456,21 +456,28 @@ h2 {
     padding: 0;
 }
 
-/* Section headers for story and lyrics on desktop */
-.inline-tab-pane::before {
-    display: block;
-    font-weight: bold;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-}
+/* Desktop: Show both sections side-by-side */
+@media (min-width: 769px) {
+    .inline-tab-pane {
+        display: block !important;
+    }
 
-#inlineStoryTab::before {
-    content: "Story";
-}
+    /* Section headers for story and lyrics on desktop */
+    .inline-tab-pane::before {
+        display: block;
+        font-weight: bold;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+    }
 
-#inlineLyricsTab::before {
-    content: "Lyrics";
+    #inlineStoryTab::before {
+        content: "Story";
+    }
+
+    #inlineLyricsTab::before {
+        content: "Lyrics";
+    }
 }
 
 
@@ -773,24 +780,33 @@ footer {
         align-items: center;
     }
 
-    /* Mobile: Show tabs, stack content */
+    /* Mobile: Show tabs and hide side-by-side layout */
     .inline-tabs.mobile-only {
-        display: flex;
+        display: flex !important;
     }
 
-    .inline-content {
-        display: block;
+    /* But always hide if hidden class is present */
+    .inline-tabs.hidden {
+        display: none !important;
     }
 
+    .inline-content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    /* Mobile: Hide all tabs by default */
     .inline-tab-pane {
-        display: none;
+        display: none !important;
     }
 
+    /* Mobile: Only show active tab */
     .inline-tab-pane.active {
-        display: block;
+        display: block !important;
     }
 
+    /* Hide section headers on mobile (tabs replace them) */
     .inline-tab-pane::before {
-        display: none;
+        display: none !important;
     }
 }

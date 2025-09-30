@@ -1,8 +1,7 @@
 // Track data for the SPARK soundtrack - Based on actual MP3 files
 const tracks = [
-    { id: 1, title: "01 Disney Intro", duration: "3:24", description: "The magical beginning", story: "The journey starts with the familiar warmth of storytelling magic, setting the stage for an epic tale.", lyrics: "Coming soon..." },
-    { id: 2, title: "02 Kingdom Opening", duration: "4:15", description: "Welcome to the realm", story: "Just moments ago the 2 sister stars were still visible, but already the sun rises over a mysterious kingdom. The sun people set to work while in the Wildlands the animals awaken, just as in the distant jungle a terrible beast lies in wait for those who are foolish enough to approach it.", lyrics: "Coming soon..." },
-    { id: 3, title: "03 Sun Hiccups", duration: "3:42", description: "The great light falters", story: "Something is wrong with the great sun that powers the realm. Its light flickers and dims.", lyrics: `[Verse 1]
+    { id: 1, title: "01 Kingdom Opening", duration: "4:15", description: "Welcome to the realm", story: "Just moments ago the 2 sister stars were still visible, but already the sun rises over a mysterious kingdom. The sun people set to work while in the Wildlands the animals awaken, just as in the distant jungle a terrible beast lies in wait for those who are foolish enough to approach it.", lyrics: "" },
+    { id: 2, title: "02 Sun Hiccups", duration: "3:42", description: "The great light falters", story: "Something is wrong with the great sun that powers the realm. Its light flickers and dims.", lyrics: `[Verse 1]
 Wake up early, climb the tower high
 Check the crystals that catch the sky
 "Morning, sparkles," that's what I say
@@ -73,32 +72,32 @@ Tomorrow brings another way!
 [Outro]
 "Stay strong, sunshine, I'm still here
 But maybe... maybe I need help, I fear"` },
-    { id: 4, title: "04 Underground Rider", duration: "4:08", description: "Journey into the depths", story: "Our heroes venture into underground passages, discovering hidden tunnels and ancient secrets.", lyrics: "Coming soon..." },
-    { id: 5, title: "05 Sparks", duration: "3:56", description: "When powers create magic", story: "The moment when Finn and Nova's energies first connect, creating the sparks that give our story its name.", lyrics: "Coming soon..." },
-    { id: 6, title: "06 Seraphina - The Angel Lady", duration: "4:23", description: "Beautiful deception", story: "Lady Seraphina appears with angelic beauty and grace, but beneath lies a darker purpose.", lyrics: "Coming soon..." },
-    { id: 7, title: "07 The Glowing Words", duration: "3:15", description: "Ancient prophecies", story: "Mysterious text begins to glow with inner light, revealing prophecies and truths long hidden.", lyrics: "Coming soon..." },
-    { id: 8, title: "08 Order Must Prevail", duration: "4:45", description: "The antagonist's philosophy", story: "Seraphina's true beliefs are revealed - her desire to impose perfect order on a chaotic world.", lyrics: "Coming soon..." },
-    { id: 9, title: "09 Into the Wild Lands", duration: "4:33", description: "Beyond civilization", story: "Our heroes leave safety and venture into the untamed Wild Lands where danger awaits.", lyrics: "Coming soon..." },
-    { id: 10, title: "10 Welcome to the Wild Lands", duration: "3:28", description: "The untamed frontier", story: "The Wild Lands reveal their nature - a place of freedom, danger, and unexpected allies.", lyrics: "Coming soon..." },
-    { id: 11, title: "11 Learning Magic Together", duration: "4:12", description: "Mastering combined powers", story: "Through practice and trust, our heroes learn to combine their abilities, creating magic neither could achieve alone.", lyrics: "Coming soon..." },
-    { id: 12, title: "12 Desert Mirage Madness", duration: "3:47", description: "Illusions and reality blur", story: "The desert plays tricks on mind and eye, challenging our heroes with mirages that may be more real than they appear.", lyrics: "Coming soon..." },
-    { id: 13, title: "13 Through the desert", duration: "5:12", description: "The long journey", story: "An epic trek across vast desert expanses tests our heroes' endurance and resolve.", lyrics: "Coming soon..." },
-    { id: 14, title: "14 Seven Sister Stars", duration: "4:18", description: "Celestial guidance", story: "The seven stars that have watched over the realm since ancient times provide guidance and hope.", lyrics: "Coming soon..." },
-    { id: 15, title: "15 More Than Sparks", duration: "4:52", description: "Love grows stronger", story: "Finn and Nova realize their connection transcends their magical abilities - they've found something deeper.", lyrics: "Coming soon..." },
-    { id: 16, title: "16 Museum of Wonders", duration: "4:45", description: "Ancient artifacts revealed", story: "In a hidden museum, artifacts from the realm's past reveal the true history and origins of the current crisis.", lyrics: "Coming soon..." },
-    { id: 17, title: "17 Chrono Rex of Planet X", duration: "3:56", description: "Unexpected ally", story: "A mysterious figure from another planet arrives with knowledge that could change everything.", lyrics: "Coming soon..." },
-    { id: 18, title: "18 Magic Train", duration: "4:33", description: "Journey on rails of energy", story: "An ethereal locomotive carries our heroes on rails of light toward their final destination.", lyrics: "Coming soon..." },
-    { id: 19, title: "19 You cannot sneak upon", duration: "3:24", description: "Stealth fails", story: "Our heroes discover that some enemies cannot be surprised - ancient powers sense approaching danger.", lyrics: "Coming soon..." },
-    { id: 20, title: "20 The Golden Angel's Secret", duration: "4:38", description: "Seraphina's true nature", story: "The final truth about Lady Seraphina emerges, revealing why she appears beautiful yet acts with cruelty.", lyrics: "Coming soon..." },
-    { id: 21, title: "21 When Hope Feels Far", duration: "4:15", description: "The darkest hour", story: "At their lowest point, when defeat seems certain, our heroes must find strength to continue.", lyrics: "Coming soon..." },
-    { id: 22, title: "22 Seraphina - All Together Now 1", duration: "5:18", description: "The final battle begins", story: "All forces converge as the ultimate confrontation between order and freedom finally begins.", lyrics: "Coming soon..." },
-    { id: 23, title: "23 Sheriff - All Together Now 2", duration: "4:42", description: "Law and justice join", story: "Even the forces of law and order must choose sides in this battle that will determine the fate of all realms.", lyrics: "Coming soon..." },
-    { id: 24, title: "24 I am what remains when duty outlives its makers", duration: "6:05", description: "The cost of purpose", story: "A haunting revelation about what happens when duty continues long after those who created it are gone.", lyrics: "Coming soon..." },
-    { id: 25, title: "25 All toghether now 3", duration: "5:33", description: "Unity in the final hour", story: "All our heroes, allies, and even former enemies must unite for one last desperate attempt to save their world.", lyrics: "Coming soon..." },
-    { id: 26, title: "26 Home in the Stars", duration: "5:26", description: "Victory brings transformation", story: "With the battle won, our heroes find that home might be something different than they originally imagined.", lyrics: "Coming soon..." },
-    { id: 27, title: "27 Credits", duration: "3:48", description: "The story's end", story: "As our tale concludes, we reflect on the journey taken and the lessons learned about friendship and hope.", lyrics: "Coming soon..." },
-    { id: 28, title: "28 Post Credit Scene", duration: "2:32", description: "Adventures yet to come", story: "Just when you think it's over, strange new lights appear, suggesting this ending might be another beginning.", lyrics: "Coming soon..." },
-    { id: 29, title: "29 Bonus Level - Chrono Rex vs Seraphina", duration: "4:17", description: "Epic cosmic clash", story: "An epic bonus battle between the time-traveling Chrono Rex and the golden angel Seraphina.", lyrics: "Coming soon..." }
+    { id: 3, title: "03 Underground Rider", duration: "4:08", description: "Journey into the depths", story: "Our heroes venture into underground passages, discovering hidden tunnels and ancient secrets.", lyrics: "Coming soon..." },
+    { id: 4, title: "04 Sparks", duration: "3:56", description: "When powers create magic", story: "The moment when Finn and Nova's energies first connect, creating the sparks that give our story its name.", lyrics: "Coming soon..." },
+    { id: 5, title: "05 Seraphina - The Angel Lady", duration: "4:23", description: "Beautiful deception", story: "Lady Seraphina appears with angelic beauty and grace, but beneath lies a darker purpose.", lyrics: "Coming soon..." },
+    { id: 6, title: "06 The Glowing Words", duration: "3:15", description: "Ancient prophecies", story: "Mysterious text begins to glow with inner light, revealing prophecies and truths long hidden.", lyrics: "Coming soon..." },
+    { id: 7, title: "07 Order Must Prevail", duration: "4:45", description: "The antagonist's philosophy", story: "Seraphina's true beliefs are revealed - her desire to impose perfect order on a chaotic world.", lyrics: "Coming soon..." },
+    { id: 8, title: "08 Into the Wild Lands", duration: "4:33", description: "Beyond civilization", story: "Our heroes leave safety and venture into the untamed Wild Lands where danger awaits.", lyrics: "Coming soon..." },
+    { id: 9, title: "09 Welcome to the Wild Lands", duration: "3:28", description: "The untamed frontier", story: "The Wild Lands reveal their nature - a place of freedom, danger, and unexpected allies.", lyrics: "Coming soon..." },
+    { id: 10, title: "10 Learning Magic Together", duration: "4:12", description: "Mastering combined powers", story: "Through practice and trust, our heroes learn to combine their abilities, creating magic neither could achieve alone.", lyrics: "Coming soon..." },
+    { id: 11, title: "11 Desert Mirage Madness", duration: "3:47", description: "Illusions and reality blur", story: "The desert plays tricks on mind and eye, challenging our heroes with mirages that may be more real than they appear.", lyrics: "Coming soon..." },
+    { id: 12, title: "12 Through the desert", duration: "5:12", description: "The long journey", story: "An epic trek across vast desert expanses tests our heroes' endurance and resolve.", lyrics: "" },
+    { id: 13, title: "13 Seven Sister Stars", duration: "4:18", description: "Celestial guidance", story: "The seven stars that have watched over the realm since ancient times provide guidance and hope.", lyrics: "" },
+    { id: 14, title: "14 More Than Sparks", duration: "4:52", description: "Love grows stronger", story: "Finn and Nova realize their connection transcends their magical abilities - they've found something deeper.", lyrics: "Coming soon..." },
+    { id: 15, title: "15 Museum of Wonders", duration: "4:45", description: "Ancient artifacts revealed", story: "In a hidden museum, artifacts from the realm's past reveal the true history and origins of the current crisis.", lyrics: "Coming soon..." },
+    { id: 16, title: "16 Chrono Rex of Planet X", duration: "3:56", description: "Unexpected ally", story: "A mysterious figure from another planet arrives with knowledge that could change everything.", lyrics: "Coming soon..." },
+    { id: 17, title: "17 Magic Train", duration: "4:33", description: "Journey on rails of energy", story: "An ethereal locomotive carries our heroes on rails of light toward their final destination.", lyrics: "Coming soon..." },
+    { id: 18, title: "18 You cannot sneak upon", duration: "3:24", description: "Stealth fails", story: "Our heroes discover that some enemies cannot be surprised - ancient powers sense approaching danger.", lyrics: "Coming soon..." },
+    { id: 19, title: "19 The Golden Angel's Secret", duration: "4:38", description: "Seraphina's true nature", story: "The final truth about Lady Seraphina emerges, revealing why she appears beautiful yet acts with cruelty.", lyrics: "Coming soon..." },
+    { id: 20, title: "20 When Hope Feels Far", duration: "4:15", description: "The darkest hour", story: "At their lowest point, when defeat seems certain, our heroes must find strength to continue.", lyrics: "Coming soon..." },
+    { id: 21, title: "21 Seraphina - All Together Now 1", duration: "5:18", description: "The final battle begins", story: "All forces converge as the ultimate confrontation between order and freedom finally begins.", lyrics: "Coming soon..." },
+    { id: 22, title: "22 Sheriff - All Together Now 2", duration: "4:42", description: "Law and justice join", story: "Even the forces of law and order must choose sides in this battle that will determine the fate of all realms.", lyrics: "Coming soon..." },
+    { id: 23, title: "23 I am what remains when duty outlives its makers", duration: "6:05", description: "The cost of purpose", story: "A haunting revelation about what happens when duty continues long after those who created it are gone.", lyrics: "Coming soon..." },
+    { id: 24, title: "24 All toghether now 3", duration: "5:33", description: "Unity in the final hour", story: "All our heroes, allies, and even former enemies must unite for one last desperate attempt to save their world.", lyrics: "Coming soon..." },
+    { id: 25, title: "25 Home in the Stars", duration: "5:26", description: "Victory brings transformation", story: "With the battle won, our heroes find that home might be something different than they originally imagined.", lyrics: "Coming soon..." },
+    { id: 26, title: "26 Credits", duration: "3:48", description: "The story's end", story: "As our tale concludes, we reflect on the journey taken and the lessons learned about friendship and hope.", lyrics: "Coming soon..." },
+    { id: 27, title: "27 Post Credit Scene", duration: "2:32", description: "Adventures yet to come", story: "Just when you think it's over, strange new lights appear, suggesting this ending might be another beginning.", lyrics: "Coming soon..." },
+    { id: 28, title: "28 Bonus Level - Chrono Rex vs Seraphina", duration: "4:17", description: "Epic cosmic clash", story: "An epic bonus battle between the time-traveling Chrono Rex and the golden angel Seraphina.", lyrics: "Coming soon..." }
 ];
 
 // Audio player state
@@ -187,18 +186,63 @@ function showTrackDetailsInline(index) {
     const inlineStory = document.getElementById('inlineTrackStory');
     const inlineLyrics = document.getElementById('inlineTrackLyrics');
     const lyricsTab = document.getElementById('inlineLyricsTab');
+    const storyTab = document.getElementById('inlineStoryTab');
     const contentWrapper = document.querySelector('.inline-content-wrapper');
+    const tabsContainer = document.querySelector('.inline-tabs');
 
     if (selectedTitle) selectedTitle.textContent = track.title;
     if (inlineStory) inlineStory.textContent = track.story || 'Story coming soon...';
-    if (inlineLyrics) inlineLyrics.textContent = track.lyrics || 'Lyrics coming soon...';
 
-    // Check if lyrics exist
-    const hasLyrics = track.lyrics && track.lyrics !== 'Coming soon...';
+    // Check if lyrics exist (empty string means instrumental, no lyrics at all)
+    const hasLyrics = track.lyrics && track.lyrics.trim() !== '';
+
+    // Only set lyrics text if there are lyrics
+    if (inlineLyrics) {
+        if (hasLyrics) {
+            inlineLyrics.textContent = track.lyrics;
+        } else {
+            inlineLyrics.textContent = ''; // Clear it for instrumental tracks
+        }
+    }
 
     // Show/hide lyrics section based on availability
     if (lyricsTab) {
-        lyricsTab.style.display = hasLyrics ? 'block' : 'none';
+        if (hasLyrics) {
+            lyricsTab.style.display = '';
+            lyricsTab.classList.remove('hidden');
+        } else {
+            lyricsTab.classList.add('hidden');
+        }
+    }
+
+    if (storyTab) {
+        storyTab.classList.remove('hidden');
+    }
+
+    // Hide tabs if no lyrics (only story to show)
+    if (tabsContainer) {
+        if (hasLyrics) {
+            tabsContainer.classList.remove('hidden');
+        } else {
+            tabsContainer.classList.add('hidden');
+        }
+    }
+
+    // On mobile with tabs: make sure story is shown if no lyrics
+    if (!hasLyrics && storyTab) {
+        storyTab.classList.add('active');
+    } else if (hasLyrics && lyricsTab) {
+        // Reset to lyrics tab when lyrics exist
+        lyricsTab.classList.add('active');
+        if (storyTab) storyTab.classList.remove('active');
+        // Update tab buttons
+        document.querySelectorAll('.inline-tab-btn').forEach(btn => {
+            if (btn.dataset.tab === 'lyrics') {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
     }
 
     // Adjust layout: if no lyrics, make story full width
@@ -216,9 +260,6 @@ function showTrackDetailsInline(index) {
     });
     const activeTrack = document.querySelector(`[data-index="${index}"]`);
     if (activeTrack) activeTrack.classList.add('active');
-
-    // Reset to story tab
-    switchInlineTab('story');
 
     // Scroll to the album info area where the track details are shown
     const albumInfo = document.getElementById('albumInfo');
@@ -272,7 +313,7 @@ function setupEventListeners() {
             console.warn('showTracklistButton not found');
         }
         
-        // Inline tab switching - with null check
+        // Inline tab switching for mobile
         const inlineTabButtons = document.querySelectorAll('.inline-tab-btn');
         if (inlineTabButtons && inlineTabButtons.length > 0) {
             inlineTabButtons.forEach(btn => {
@@ -286,10 +327,8 @@ function setupEventListeners() {
                 }
             });
             console.log(`Added listeners to ${inlineTabButtons.length} inline tab buttons`);
-        } else {
-            console.warn('No inline-tab-btn elements found');
         }
-        
+
         // Download button
         const downloadButton = document.getElementById('downloadAlbum');
         if (downloadButton) {
@@ -405,9 +444,9 @@ function switchInlineTab(tabName) {
     document.querySelectorAll('.inline-tab-btn').forEach(btn => {
         btn.classList.remove('active');
     });
-    const activeBtn = document.querySelector(`[data-tab="${tabName}"]`);
+    const activeBtn = document.querySelector(`.inline-tab-btn[data-tab="${tabName}"]`);
     if (activeBtn) activeBtn.classList.add('active');
-    
+
     // Update inline tab content
     document.querySelectorAll('.inline-tab-pane').forEach(pane => {
         pane.classList.remove('active');
