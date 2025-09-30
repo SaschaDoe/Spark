@@ -58,10 +58,10 @@ netlify init
 ```
 
 2. Configure environment variables in Netlify Dashboard:
-   - `R2_ACCOUNT_ID`
-   - `R2_ACCESS_KEY_ID`
-   - `R2_SECRET_ACCESS_KEY`
-   - `R2_BUCKET_NAME`
+   - `R2_ACCESS_KEY_ID` (mark as secret)
+   - `R2_SECRET_ACCESS_KEY` (mark as secret)
+   - `R2_ENDPOINT` (e.g., https://your_account_id.r2.cloudflarestorage.com)
+   - `R2_BUCKET_NAME` (e.g., sashbot)
 
 3. Deploy:
 ```bash

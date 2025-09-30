@@ -30,12 +30,16 @@ After initial deployment:
 
 1. Go to **Site settings** → **Environment variables**
 2. Click **"Add a variable"**
-3. Add these TWO variables:
+3. Add these FOUR variables:
 
 ```
-R2_ACCESS_KEY_ID = [Your R2 Access Key ID]
-R2_SECRET_ACCESS_KEY = [Your R2 Secret Access Key]
+R2_ACCESS_KEY_ID = [Your R2 Access Key ID] (mark as SECRET)
+R2_SECRET_ACCESS_KEY = [Your R2 Secret Access Key] (mark as SECRET)
+R2_ENDPOINT = https://576174baf004f97bc745e85efb36b7e8.r2.cloudflarestorage.com
+R2_BUCKET_NAME = sashbot
 ```
+
+**Note:** Only mark `R2_ACCESS_KEY_ID` and `R2_SECRET_ACCESS_KEY` as secret values. The endpoint and bucket name can be regular environment variables.
 
 **To get these credentials from Cloudflare:**
 
@@ -49,6 +53,7 @@ R2_SECRET_ACCESS_KEY = [Your R2 Secret Access Key]
    - TTL: Leave as default
 5. Click **"Create API Token"**
 6. **IMPORTANT**: Copy the Access Key ID and Secret Access Key immediately (you won't see them again!)
+7. The R2 endpoint URL can be found in your R2 settings (format: `https://[account-id].r2.cloudflarestorage.com`)
 
 ### 5. Install Dependencies
 
@@ -114,7 +119,7 @@ If the build fails, check:
 ## Quick Checklist
 
 - [ ] Site imported from GitHub
-- [ ] Environment variables added (R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY)
+- [ ] Environment variables added (R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_ENDPOINT, R2_BUCKET_NAME)
 - [ ] Site deployed successfully
 - [ ] Files uploaded to R2 bucket
 - [ ] Download function tested

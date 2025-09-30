@@ -67,11 +67,13 @@ netlify init
 1. Go to Netlify Dashboard → Site Settings → Environment Variables
 2. Add the following:
 ```
-R2_ACCOUNT_ID=your_cloudflare_account_id
-R2_ACCESS_KEY_ID=your_r2_access_key
-R2_SECRET_ACCESS_KEY=your_r2_secret_key
+R2_ACCESS_KEY_ID=your_r2_access_key (mark as secret)
+R2_SECRET_ACCESS_KEY=your_r2_secret_key (mark as secret)
+R2_ENDPOINT=https://your_account_id.r2.cloudflarestorage.com
 R2_BUCKET_NAME=spark-soundtrack
 ```
+
+**Note:** Only mark the access keys as secret values. The endpoint and bucket name can be regular environment variables.
 
 ### 2.3 Deploy to Netlify
 ```bash
@@ -120,15 +122,15 @@ const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
 exports.handler = async (event, context) => {
     const R2 = new S3Client({
         region: 'auto',
-        endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+        endpoint: process.env.R2_ENDPOINT,
         credentials: {
             accessKeyId: process.env.R2_ACCESS_KEY_ID,
             secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
         },
     });
-    
+
     const { trackId } = event.queryStringParameters;
-    
+
     const command = new GetObjectCommand({
         Bucket: process.env.R2_BUCKET_NAME,
         Key: `tracks/track-${trackId}.mp3`,
@@ -155,13 +157,13 @@ const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
 exports.handler = async (event, context) => {
     const R2 = new S3Client({
         region: 'auto',
-        endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+        endpoint: process.env.R2_ENDPOINT,
         credentials: {
             accessKeyId: process.env.R2_ACCESS_KEY_ID,
             secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
         },
     });
-    
+
     const command = new GetObjectCommand({
         Bucket: process.env.R2_BUCKET_NAME,
         Key: 'albums/SPARK_Soundtrack_Complete.zip',
